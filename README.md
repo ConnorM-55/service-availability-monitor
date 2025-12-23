@@ -1,12 +1,15 @@
 # Service Availability Monitor
 
-A lightweight Python script that checks a list of web endpoints on a fixed interval and logs uptime + latency to a CSV file.
-
-## Features
-- Reads endpoints from an external file (`urls.txt`)
-- Measures latency and classifies endpoints as: UP / SLOW / UNHEALTHY / DOWN
-- Logs results to `uptime_log.csv` with timestamps
-- Exit with Ctrl+C
+Small Python tool that checks a list of URLs on a fixed interval and logs the results to a CSV.
+## What it does
+- Reads endpoints from "urls.txt" (one per line)
+- Sends an HTTP GET request to each endpoint
+- Measures response time and records the following:
+    -**UP** (Connected in <2s and HTTP status <400)
+    -**SLOW** (HTTPS status is under 400, but latency is over the threshold)
+    -**UNHEALTHY** (HTTP status is 4xx or 5xx)
+    -**DOWN** (Timeout, DNS error, or a connection error)
+- Saves results to "uptime_log.csv" with timestamps
 
 ## Setup
 ```bash
