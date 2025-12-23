@@ -1,0 +1,6 @@
+uptime_log.csv
+urls.txt
+__pycache__/
+*.pyc
+.venv/
+.env
